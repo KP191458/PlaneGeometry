@@ -6,8 +6,7 @@ using namespace std;
 struct Punkt
 {
     Punkt(int x, int y)
-        :x(x), y(y)
-        {}
+        :x(x), y(y) {}
 
     int x;
     int y;
