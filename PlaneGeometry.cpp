@@ -22,32 +22,39 @@ struct Figura
     vector<Punkt> punkty;
 };
 
-Punkt Dodaj( Punkt a, Punkt b )
+Punkt dodaj( Punkt a, Punkt b )
 {
     return Punkt(a.x+b.x, a.y+b.y);
 };
 
-void wysrodkuj(Figura &fig)
+Punkt odejmij( Punkt a, Punkt b )
 {
+    return Punkt(a.x-b.x, a.y-b.y);
+};
+
+Figura wysrodkuj(Figura fig)
+{
+    Punkt srodek = odejmij(fig.srodek, fig.srodek);
+    vector<Punkt>punkty;
     for(Punkt p : fig.punkty)
     {
-        p = Dodaj(fig.srodek, p);
+        punkty.push_back(odejmij(fig.srodek, p));
     }
+    return Figura(srodek, punkty);
 };
 
 void wyswietlPunkt(Punkt p)
 {
-    cout << "(" << p.x;
+    cout << "(" << p.x << ", ";
     cout << p.y << ")";
     cout << endl;
 };
 
-void podajInfo(Figura fig)
+void wyswietlFigure(Figura fig)
 {
     cout << "Figura:" << endl;
     cout << "Srodek : ";
     wyswietlPunkt(fig.srodek);
-    cout << endl;
     cout << "Punkty :" << endl;    
     int i = 0;
     for(Punkt p : fig.punkty)
@@ -56,10 +63,22 @@ void podajInfo(Figura fig)
         cout << i << " ";
         wyswietlPunkt(p);
     }
+    cout << endl;
 };
 
 int main ()
 {
     cout << "Geometria:" << endl;
+
+    vector<Punkt>punkty;
+    punkty.push_back(Punkt(0,0));
+    punkty.push_back(Punkt(2,5));
+    punkty.push_back(Punkt(4,6));
+
+    Figura fig = Figura(Punkt(1,1), punkty);
+
+    wyswietlFigure(fig);
+    wyswietlFigure(wysrodkuj(fig));
+
     return 0;
 }
