@@ -38,7 +38,7 @@ Figura wysrodkuj(Figura fig)
     vector<Punkt>punkty;
     for(Punkt p : fig.punkty)
     {
-        punkty.push_back(odejmij(fig.srodek, p));
+        punkty.push_back(odejmij(p,fig.srodek));
     }
     return Figura(srodek, punkty);
 };
