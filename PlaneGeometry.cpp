@@ -43,6 +43,27 @@ Figura wysrodkuj(Figura fig)
     return Figura(srodek, punkty);
 };
 
+float stopnieNaRadiany(int kat)
+{
+    return float(kat)*3.14/180;
+}
+
+Punkt obrocPunkt(Punkt punkt, int kat)
+{
+    float rad = stopnieNaRadiany(kat);
+    return Punkt(punkt.x*cos(rad) - punkt.y*sin(rad), punkt.x*sin(rad) + punkt.y*cos(rad));
+}
+
+Figura obrocFigure(Figura fig, int kat)
+{
+    vector<Punkt> obrocone;
+    for(Punkt p : fig.punkty)
+    {
+        obrocone.push_back(obrocPunkt(p, kat)); 
+    }
+    return Figura(fig.srodek, obrocone);
+}
+
 void wyswietlPunkt(Punkt p)
 {
     cout << "(" << p.x << ", ";
