@@ -87,12 +87,23 @@ void wyswietlFigure(Figura fig)
     cout << endl;
 };
 
+double Pole(Punkt a, Punkt b, Punkt c)
+{
+    double pole = double((b.x - a.x)*(c.y - a.y) - (c.x - a.x)*(b.y - a.y))/2.0;
+    return (pole > 0.0) ? pole : -pole;
+}
+
+double DlugoscOdcinka(Punkt a, Punkt b)
+{
+    return sqrt(((b.x-a.x)^2)+(b.y-a.y^2));
+}
+
 int main ()
 {
     cout << "Geometria:" << endl;
 
     vector<Punkt>punkty;
-    punkty.push_back(Punkt(0,0));
+    punkty.push_back(Punkt(1,0));
     punkty.push_back(Punkt(2,5));
     punkty.push_back(Punkt(4,6));
 
@@ -100,6 +111,9 @@ int main ()
 
     wyswietlFigure(fig);
     wyswietlFigure(wysrodkuj(fig));
+
+    cout << Pole(punkty[0], punkty[1], punkty[2]) << endl;
+    cout << DlugoscOdcinka(punkty[0], punkty[1]) << endl;
 
     return 0;
 }
