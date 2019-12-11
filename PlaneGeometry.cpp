@@ -107,18 +107,13 @@ Punkt srodekCiezkosci(vector<Punkt> punkty)
 {
     float srodekX = 0.0;
     float srodekY = 0.0;
-
     float ilosc = float(punkty.size());
 
     for(Punkt p : punkty)
-    {
         srodekX += p.x;
-    }
     
     for(Punkt p : punkty)
-    {
         srodekY += p.y;
-    }
 
     return Punkt(srodekX/ilosc, srodekY/ilosc);
 }
@@ -126,11 +121,8 @@ Punkt srodekCiezkosci(vector<Punkt> punkty)
 float obwod(Figura fig)
 {
     float obwod = 0.0;
-
     for (size_t i = 0; i < fig.punkty.size(); i++)
-    {
         obwod += dlugoscOdcinka(fig.punkty[i], fig.punkty[i+1]);
-    }
 
     return obwod;
 }
@@ -138,11 +130,8 @@ float obwod(Figura fig)
 float pole(Figura fig)
 {
     float pole = 0.0;
-
     for (size_t i = 0; i < fig.punkty.size(); i++)
-    {
         pole += poleTrojkata(fig.punkty[i], fig.punkty[i+1], fig.srodek);
-    }
 
     return pole;
 }
