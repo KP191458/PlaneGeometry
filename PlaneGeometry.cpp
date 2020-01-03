@@ -50,7 +50,7 @@ Figura wysrodkuj(Figura fig)
 
 float stopnieNaRadiany(int kat)
 {
-    return float(kat)*3.14/180;
+    return float(kat)*3.14/180.0;
 }
 
 Punkt obrocPunkt(Punkt punkt, int kat)
@@ -61,10 +61,11 @@ Punkt obrocPunkt(Punkt punkt, int kat)
 
 Figura obrocFigure(Figura fig, int kat)
 {
+
     vector<Punkt> obrocone;
-    for(Punkt p : fig.punkty)
+    for(Punkt p : wysrodkuj(fig).punkty)
     {
-        obrocone.push_back(obrocPunkt(p, kat)); 
+        obrocone.push_back(dodaj(obrocPunkt(p, kat), fig.srodek));
     }
     return Figura(fig.srodek, obrocone);
 }
@@ -94,7 +95,7 @@ void wyswietlFigure(Figura fig)
 
 float poleTrojkata(Punkt a, Punkt b, Punkt c)
 {
-    double pole = double((b.x - a.x)*(c.y - a.y) - (c.x - a.x)*(b.y - a.y))/2.0;
+    float pole = float((b.x - a.x)*(c.y - a.y) - (c.x - a.x)*(b.y - a.y))/2.0;
     return (pole > 0.0) ? pole : -pole;
 }
 
@@ -163,6 +164,8 @@ int main ()
 
     cout << endl << endl;
     cout << pole(fig2) << endl;
+
+    wyswietlFigure(obrocFigure(wysrodkuj(fig2), 45));
 
     return 0;
 }
